@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" stylesheets="/Style/main.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainController">
+    <children>
+
+        <Label layoutX="161.0" layoutY="100.0" prefHeight="300.0" prefWidth="678.0" text="Grocery Storage System">
+            <font>
+                <Font name="AppleMyungjo Regular" size="64.0" />
+            </font>
+        </Label>
+      <Button layoutX="161.0" layoutY="388.0" mnemonicParsing="false" text="Manager" />
+      <Button layoutX="476.0" layoutY="388.0" mnemonicParsing="false" text="Driver" />
+      <Button layoutX="805.0" layoutY="388.0" mnemonicParsing="false" text="Customer" />
+    </children>
+</AnchorPane>
