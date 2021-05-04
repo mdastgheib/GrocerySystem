@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="shopperController">
+    <children>
+        <TextField fx:id="password" layoutX="426.0" layoutY="172.0" />
+        <TextField fx:id="username" layoutX="426.0" layoutY="118.0" />
+        <Label layoutX="334.0" layoutY="122.0" text="Username" />
+        <Label layoutX="336.0" layoutY="189.0" text="Password" />
+        <Label layoutX="459.0" layoutY="45.0" text="Grocery System" />
+    </children>
+</AnchorPane>
