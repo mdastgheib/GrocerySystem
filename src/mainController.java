@@ -39,13 +39,6 @@ public class mainController {
         properties.load(reader);
         reader.close();
 
-        HashMap<Object, Object> driver = new HashMap<>();
-        File driverFile = new File("driver.properties");
-        FileInputStream reader1 = new FileInputStream(driverFile);
-        Properties properties1 = new Properties();
-        properties1.load(reader1);
-        reader.close();
-
         HashMap<Object, Object> manager = new HashMap<>();
         File managerFile = new File("manager.properties");
         FileInputStream reader2 = new FileInputStream(managerFile);
@@ -59,10 +52,6 @@ public class mainController {
         {
             customer.put(mainKeys, properties.get(mainKeys));
         }
-        for(String mainKeys: properties1.stringPropertyNames())
-        {
-            driver.put(mainKeys, properties1.get(mainKeys));
-        }
         for(String mainKeys: properties2.stringPropertyNames())
         {
             manager.put(mainKeys, properties2.get(mainKeys));
@@ -70,20 +59,17 @@ public class mainController {
 
         String usr = (String) manager.get(userText);
         String customers = (String) customer.get(userText);
-        String drivers = (String) driver.get(userText);
         // THIS MEANS A VALID USERNAME AND PASSWORD COMBINATION WAS ENTERED GOING TO MAKE TWO SCENES BASED OFF WHETHER OR NOT THIS PERSON IS AN ADMINISTATOR
 
-        if ((manager.containsKey(userText) &&  usr.equals(passText)) || (driver.containsKey(userText) &&  drivers.equals(passText)) || (customer.containsKey(userText) &&  customers.equals(passText)))
+        if ((manager.containsKey(userText) &&  usr.equals(passText)) || (customer.containsKey(userText) &&  customers.equals(passText)))
         {
 
             //Loading in our fxmls for each member (each user has different fxml)
             Parent managerList = FXMLLoader.load(getClass().getResource("/Style/fxmls/manager.fxml"));
             Parent shopperList = FXMLLoader.load(getClass().getResource("/Style/fxmls/shopper.fxml"));
-            Parent driverList = FXMLLoader.load(getClass().getResource("/Style/fxmls/driver.fxml"));
 
             Scene managerS = new Scene(managerList);
             Scene shopperS = new Scene(shopperList);
-            Scene deliveryS = new Scene(driverList);
 
             //Obtaining stage information and setting our new scene/fxml
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -92,11 +78,6 @@ public class mainController {
             if(manager.containsKey(userText))
             {
                 currentStage.setScene(managerS);
-                currentStage.show();
-            }
-            else if(driver.containsKey(userText))
-            {
-                currentStage.setScene(deliveryS);
                 currentStage.show();
             }
             else
