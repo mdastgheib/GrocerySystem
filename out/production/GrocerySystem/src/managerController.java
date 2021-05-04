@@ -30,12 +30,15 @@ public class managerController {
         Properties properties = new Properties();
         properties.load(reader);
         reader.close();
+
         // filling the HashMap with the property file, if empty nothing will be in it
         // but the following if statement will fill it if anything is passed
-        for(String mainKeys: properties.stringPropertyNames()){
+        for(String mainKeys: properties.stringPropertyNames())
+        {
             map.put(mainKeys, properties.get(mainKeys));
         }
         Alert notice;
+
         if(map.containsKey(key))
         {
             // Here i am converting from an object to a String (due to HashMap)
