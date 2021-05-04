@@ -6,7 +6,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="List">
    <children>
       <Button fx:id="viewB" layoutX="97.0" layoutY="38.0" mnemonicParsing="false" onAction="#loadList" text="View All" />
-      <Button fx:id="takeB" layoutX="279.0" layoutY="38.0" mnemonicParsing="false" text="Take" />
+      <Button fx:id="takeB" layoutX="279.0" layoutY="38.0" mnemonicParsing="false" onAction="#taking" text="Take" />
       <Button fx:id="returnB" layoutX="274.0" layoutY="132.0" mnemonicParsing="false" onAction="#returning" text="Return" />
       <TextField fx:id="takeItem" layoutX="347.0" layoutY="26.0" />
       <TextField fx:id="takeQ" layoutX="347.0" layoutY="64.0" />
