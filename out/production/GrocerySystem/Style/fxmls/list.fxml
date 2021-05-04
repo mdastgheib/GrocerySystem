@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane stylesheets="/Style/fxmls/main.css" prefHeight="600" prefWidth="1000" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="List">
+   <children>
+      <Button fx:id="viewB" layoutX="97.0" layoutY="38.0" mnemonicParsing="false" onAction="#loadList" text="View All" />
+      <Button fx:id="takeB" layoutX="279.0" layoutY="38.0" mnemonicParsing="false" onAction="#taking" text="Take" />
+      <Button fx:id="returnB" layoutX="274.0" layoutY="132.0" mnemonicParsing="false" onAction="#returning" text="Return" />
+      <TextField fx:id="takeItem" layoutX="347.0" layoutY="26.0" />
+      <TextField fx:id="takeQ" layoutX="347.0" layoutY="64.0" />
+      <TextField fx:id="returnItem" layoutX="347.0" layoutY="119.0" />
+      <TextField fx:id="returnQ" layoutX="347.0" layoutY="157.0" />
+      <Label layoutX="516.0" layoutY="30.0" text="Item" />
+      <Label layoutX="516.0" layoutY="68.0" text="Quantity" />
+      <Label layoutX="516.0" layoutY="124.0" text="Item" />
+      <Label layoutX="516.0" layoutY="161.0" text="Quantity " />
+      <TextArea fx:id="list" layoutX="26.0" layoutY="79.0" prefHeight="296.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainController">
+    <children>
+        <Label layoutX="459.0" layoutY="45.0" text="Grocery System" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="54.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
+    </children>
+</AnchorPane>
