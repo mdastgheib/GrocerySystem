@@ -2,18 +2,14 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="1000.0" stylesheets="/Style/main.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainController">
-    <children>
-
-        <Label layoutX="161.0" layoutY="100.0" prefHeight="300.0" prefWidth="678.0" text="Grocery Storage System">
-            <font>
-                <Font name="AppleMyungjo Regular" size="64.0" />
-            </font>
-        </Label>
-      <Button layoutX="161.0" layoutY="388.0" mnemonicParsing="false" text="Manager" />
-      <Button layoutX="476.0" layoutY="388.0" mnemonicParsing="false" text="Driver" />
-      <Button layoutX="805.0" layoutY="388.0" mnemonicParsing="false" text="Customer" />
-    </children>
+<AnchorPane stylesheets="/Style/fxmls/main.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainController">
+   <children>
+      <Button layoutX="274.0" layoutY="254.0" mnemonicParsing="false" onAction="#loggingIn" text="Login" />
+      <TextField fx:id="password" layoutX="226.0" layoutY="215.0" />
+      <TextField fx:id="username" layoutX="226.0" layoutY="175.0" />
+      <Label layoutX="162.0" layoutY="179.0" text="Username" />
+      <Label layoutX="162.0" layoutY="219.0" text="Password" />
+      <Label layoutX="244.0" layoutY="48.0" text="Grocery System" />
+   </children>
 </AnchorPane>
