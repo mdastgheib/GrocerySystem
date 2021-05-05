@@ -63,12 +63,18 @@ public class managerController {
        String location = addLoc.getText();
        String expiration = addExpr.getText();
 
+       if( item == null || item.length() == 0 || quantity == null || quantity.length() == 0 || price == null || price.length() == 0 || location == null || location.length() == 0 || expiration == null || expiration.length() == 0){
+           Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
+           notice.showAndWait();
+           return;
+       }
+
        Connection con = MySQLConnection.getConnection();
        String sql = "INSERT INTO Groceries VALUES (?, ?, ?, ?, ?)";
        PreparedStatement stmt = con.prepareStatement(sql);
        stmt.setString(1,  item);
        stmt.setInt(2, Integer.parseInt(quantity));
-       stmt.setDouble(3, Integer.parseInt(price));
+       stmt.setDouble(3, Double.parseDouble(price));
        stmt.setString(4, location);
        stmt.setString(5, expiration);
        stmt.executeUpdate();
