@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600" prefWidth="1000" xmlns="http://javafx.com/javafx" stylesheets="/Style/fxmls/main.css" xmlns:fx="http://javafx.com/fxml" fx:controller="managerController">
+<AnchorPane prefHeight="600" prefWidth="1000" xmlns="http://javafx.com/javafx" stylesheets="/Style/fxmls/main.css" xmlns:fx="http://javafx.com/fxml" fx:controller="shopperController">
     <children>
 
         <TableView fx:id="fxTable" layoutX="31.0" layoutY="27.0" prefHeight="503.0" prefWidth="699.0">
@@ -30,7 +30,7 @@
         <Label layoutX="740.0" layoutY="254.0" text="Location" />
         <Label layoutX="740.0" layoutY="298.0" text="Expiration" />
         <Label layoutX="826.0" layoutY="19.0" text="- Options -" />
-        <ComboBox fx:id="optionBox" layoutX="788.0" layoutY="59.0" prefWidth="150.0" disable="true"/>
+        <ComboBox fx:id="optionBox" layoutX="788.0" layoutY="59.0" prefWidth="150.0" />
 
     </children>
 </AnchorPane>

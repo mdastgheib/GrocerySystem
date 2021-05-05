@@ -215,7 +215,7 @@ public class managerController implements Initializable{
                 Connection con = MySQLConnection.getConnection();
                 String sql = "UPDATE Groceries SET Price =  ? WHERE Item = ?"; // we dont have the amount field yet i believe
                 PreparedStatement stmt = con.prepareStatement(sql);
-                stmt.setInt(1,  Integer.parseInt(price));
+                stmt.setDouble(1,  Double.parseDouble(price));
                 stmt.setString(2, itemName);
                 stmt.executeUpdate();
 
@@ -228,7 +228,7 @@ public class managerController implements Initializable{
                Connection con = MySQLConnection.getConnection();
                String sql = "UPDATE Groceries SET Location =  ? WHERE Item = ?"; // we dont have the amount field yet i believe
                PreparedStatement stmt = con.prepareStatement(sql);
-               stmt.setInt(1,  Integer.parseInt(location));
+               stmt.setString(1,  location);
                stmt.setString(2, itemName);
                stmt.executeUpdate();
 
@@ -241,7 +241,7 @@ public class managerController implements Initializable{
                Connection con = MySQLConnection.getConnection();
                String sql = "UPDATE Groceries SET Expiration =  ? WHERE Item = ?"; // we dont have the amount field yet i believe
                PreparedStatement stmt = con.prepareStatement(sql);
-               stmt.setInt(1,  Integer.parseInt(exprDt));
+               stmt.setString(1,  exprDt);
                stmt.setString(2, itemName);
                stmt.executeUpdate();
 
@@ -252,7 +252,7 @@ public class managerController implements Initializable{
    }
 
     // ATTEMPTING TO do addition with the SQL database
-    public void testAddition() {
+   /* public void testAddition() {
         try{
             // grabing the text from the user (which are entered in the text fields)
             String itemName = itemTXT.getText();
@@ -294,9 +294,9 @@ public class managerController implements Initializable{
             System.out.println(e);
         }
     }
+    */
 
-
-    public void loadList() throws IOException {
+    /*public void loadList() throws IOException {
         String finalMap ="";
         HashMap<Object, Object> map = new HashMap<>();
         File file = new File("inventory.properties");
@@ -322,7 +322,7 @@ public class managerController implements Initializable{
             }
         }
         //list.setText(finalMap);
-    }
+    }*/
 
     //Method that will intake boolean value for setDisable options
     public void disabler (Boolean option) {
