@@ -1,7 +1,12 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -29,6 +34,51 @@ public class managerController {
     | item       | varchar(20) | NO   |     | NULL    |       |
     +------------+-------------+------+-----+---------+-------+
     */
+
+    // ATTEMPTING TO do addition with the SQL database
+    public void testAddition() throws Exception{
+        try{
+            // grabing the text from the user (which are entered in the text fields)
+            String itemName = returnItem.getText();
+            String itemQuantity = returnQ.getText();
+            // ERROR CHECKING
+            if( itemName == null || itemName.length() == 0 || itemQuantity == null || itemQuantity.length() == 0){
+                Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
+                notice.showAndWait();
+                return;
+            }
+            Connection con = MySQLConnection.getConnection();
+            String sql = " UPDATE GROCERIES SET amount += ? WHERE name = ?"; // we dont have the amount field yet i believe
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1,  Integer.parseInt(itemQuantity));
+            stmt.setString(2, itemName);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void testSubtraction() throws Exception{
+        try{
+            String itemName = takeItem.getText();
+            String itemQuantity = takeQ.getText();
+            // ERROR CHECKING
+            if( itemName == null || itemName.length() == 0 || itemQuantity == null || itemQuantity.length() == 0){
+                Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
+                notice.showAndWait();
+                return;
+            }
+            Connection con = MySQLConnection.getConnection();
+            String sql = " UPDATE GROCERIES SET amount -= ? WHERE name = ?"; // we dont have the amount field yet i believe
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1,  Integer.parseInt(itemQuantity));
+            stmt.setString(2, itemName);
+            stmt.executeUpdate();
+
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
 
     public void taking() throws IOException{
         String key = takeItem.getText();
