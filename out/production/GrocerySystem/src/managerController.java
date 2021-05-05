@@ -56,6 +56,22 @@ public class managerController {
 
     */
 
+    public void removeColumn() throws Exception{
+        /* String item  = delete.getText();
+        if(item == null || item.length() == 0){
+           Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
+           notice.showAndWait();
+           return;
+        }
+        Connection con = MySQLConnection.getConnection();
+        String sql = "DELETE FROM Groceries WHERE item = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1,  item);
+        stmt.executeUpdate();
+
+         */
+    }
+
    public void addingColumn() throws Exception{
        String item = addItem.getText();
        String quantity = addQ.getText();
@@ -116,7 +132,7 @@ public class managerController {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1,  Integer.parseInt(itemQuantity));
             stmt.setString(2, itemName);
-            stmt.executeUpdate();
+            System.out.println(stmt.executeUpdate()); // stmt.executeUpdate();
 
         } catch (Exception e){
             System.out.println(e);
