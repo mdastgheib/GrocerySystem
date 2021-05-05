@@ -31,7 +31,8 @@ public class mainController {
             notice.showAndWait();
             return;
         }
-        // declaring my HashMap
+
+        //Hashmaps to compare input to login value
         HashMap<Object, Object> customer = new HashMap<>();
         File customerFile = new File("customer.properties");
         FileInputStream reader = new FileInputStream(customerFile);

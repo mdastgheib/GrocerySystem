@@ -17,13 +17,30 @@ public class managerController {
    @FXML
    public javafx.scene.control.TextArea list;
 
+   /*Table Schema (SQL DB)
+    - DB Name: Inventory
+    - Table Name: Groceries
+    +------------+-------------+------+-----+---------+-------+
+    | Field      | Type        | Null | Key | Default | Extra |
+    +------------+-------------+------+-----+---------+-------+
+    | Quantity   | int         | NO   |     | NULL    |       |
+    | Location   | varchar(20) | NO   |     | NULL    |       |
+    | Expiration | varchar(20) | NO   |     | NULL    |       |
+    | item       | varchar(20) | NO   |     | NULL    |       |
+    +------------+-------------+------+-----+---------+-------+
+    */
+
     public void taking() throws IOException{
         String key = takeItem.getText();
         String value = takeQ.getText();
-        if(key == null || key.length() == 0 || value == null || value.length() == 0 ){
-            Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
+        Alert notice;
+
+        if(key == null || key.length() == 0 || value == null || value.length() == 0 )
+        {
+            notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
             notice.showAndWait();
         }
+
         HashMap<Object, Object> map = new HashMap<>();
         File file = new File("inventory.properties");
         FileInputStream reader = new FileInputStream(file);
@@ -37,7 +54,7 @@ public class managerController {
         {
             map.put(mainKeys, properties.get(mainKeys));
         }
-        Alert notice;
+
 
         if(map.containsKey(key))
         {
@@ -54,13 +71,15 @@ public class managerController {
             FileOutputStream write = new FileOutputStream(file, true);
             properties.store(write, null);
             notice = new Alert(Alert.AlertType.CONFIRMATION, "Item successfully found and taken");
-        } else
+        }
+        else
         {
             notice = new Alert(Alert.AlertType.ERROR, "Item not found, please check what items are in stock.");
         }
         notice.showAndWait();
     }
-    public void returning() throws IOException {
+    public void returning() throws IOException
+    {
         // checking to see if the user did not enter an item
         String key = returnItem.getText();
         String value = returnQ.getText();
