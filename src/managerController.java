@@ -22,19 +22,57 @@ public class managerController {
    @FXML
     public javafx.scene.control.TextArea list;
 
-   /*Table Schema (SQL DB)
+    @FXML
+    public javafx.scene.control.TextField addItem;
+    @FXML
+    public javafx.scene.control.TextField addQ;
+    @FXML
+    public javafx.scene.control.TextField addP;
+    @FXML
+    public javafx.scene.control.TextField addLoc;
+    @FXML
+    public javafx.scene.control.TextField addExpr;
+
+
+
+    /*Table Schema (SQL DB)
     - DB Name: Inventory
     - Table Name: Groceries
     +------------+-------------+------+-----+---------+-------+
     | Field      | Type        | Null | Key | Default | Extra |
     +------------+-------------+------+-----+---------+-------+
+    | Item       | varchar(20) | NO   |     | NULL    |       |
     | Quantity   | int         | NO   |     | NULL    |       |
+    | Price      | double      | NO   |     | NULL    |       |
     | Location   | varchar(20) | NO   |     | NULL    |       |
     | Expiration | varchar(20) | NO   |     | NULL    |       |
-    | item       | varchar(20) | NO   |     | NULL    |       |
     +------------+-------------+------+-----+---------+-------+
+
+    SQl Queries:
+     - Add New Item:
+        INSERT INTO Groceries VALUES ('ITEM', 'QUANTITY', 'PRICE', 'LOCATION', 'EXPIRATION');
+     - Updating (Add/Sub):
+         UPDATE Groceries SET Quantity = Quantity -/+ 2 WHERE Item = 'NAME';
+
     */
 
+   public void addingColumn() throws Exception{
+       String item = addItem.getText();
+       String quantity = addQ.getText();
+       String price = addP.getText();
+       String location = addLoc.getText();
+       String expiration = addExpr.getText();
+
+       Connection con = MySQLConnection.getConnection();
+       String sql = "INSERT INTO Groceries VALUES (?, ?, ?, ?, ?)";
+       PreparedStatement stmt = con.prepareStatement(sql);
+       stmt.setString(1,  item);
+       stmt.setInt(2, Integer.parseInt(quantity));
+       stmt.setDouble(3, Integer.parseInt(price));
+       stmt.setString(4, location);
+       stmt.setString(5, expiration);
+       stmt.executeUpdate();
+   }
     // ATTEMPTING TO do addition with the SQL database
     public void testAddition() throws Exception{
         try{
@@ -48,7 +86,7 @@ public class managerController {
                 return;
             }
             Connection con = MySQLConnection.getConnection();
-            String sql = " UPDATE GROCERIES SET amount += ? WHERE name = ?"; // we dont have the amount field yet i believe
+            String sql = " UPDATE Groceries SET Quantity = Quantity + ? WHERE Item = ?"; // we dont have the amount field yet i believe
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1,  Integer.parseInt(itemQuantity));
             stmt.setString(2, itemName);
@@ -68,7 +106,7 @@ public class managerController {
                 return;
             }
             Connection con = MySQLConnection.getConnection();
-            String sql = " UPDATE GROCERIES SET amount -= ? WHERE name = ?"; // we dont have the amount field yet i believe
+            String sql = " UPDATE Groceries SET Quantity = Quantity - ?  WHERE Item = ?"; // we dont have the amount field yet i believe
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1,  Integer.parseInt(itemQuantity));
             stmt.setString(2, itemName);

@@ -3,11 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane stylesheets="/Style/fxmls/main.css" prefHeight="600" prefWidth="1000" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="managerController">
+<AnchorPane prefHeight="600" prefWidth="1000" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerController">
    <children>
       <Button fx:id="viewB" layoutX="97.0" layoutY="38.0" mnemonicParsing="false" onAction="#loadList" text="View All" />
-      <Button fx:id="takeB" layoutX="279.0" layoutY="38.0" mnemonicParsing="false" onAction="#taking" text="Take" />
-      <Button fx:id="returnB" layoutX="274.0" layoutY="132.0" mnemonicParsing="false" onAction="#returning" text="Return" />
+      <Button fx:id="takeB" layoutX="279.0" layoutY="38.0" mnemonicParsing="false" onAction="#testSubtraction" text="Take" />
+      <Button fx:id="returnB" layoutX="274.0" layoutY="132.0" mnemonicParsing="false" onAction="#testAddition" text="Return" />
       <TextField fx:id="takeItem" layoutX="347.0" layoutY="26.0" />
       <TextField fx:id="takeQ" layoutX="347.0" layoutY="64.0" />
       <TextField fx:id="returnItem" layoutX="347.0" layoutY="119.0" />
@@ -17,5 +17,16 @@
       <Label layoutX="516.0" layoutY="124.0" text="Item" />
       <Label layoutX="516.0" layoutY="161.0" text="Quantity " />
       <TextArea fx:id="list" layoutX="26.0" layoutY="79.0" prefHeight="296.0" prefWidth="200.0" />
+      <Button layoutX="260.0" layoutY="362.0" mnemonicParsing="false" onAction="#addingColumn" text="Add New" />
+      <TextField fx:id="addItem" layoutX="347.0" layoutY="288.0" />
+      <TextField fx:id="addQ" layoutX="347.0" layoutY="325.0" />
+      <TextField fx:id="addP" layoutX="347.0" layoutY="363.0" />
+      <TextField fx:id="addLoc" layoutX="347.0" layoutY="398.0" />
+      <TextField fx:id="addExpr" layoutX="347.0" layoutY="439.0" />
+      <Label layoutX="527.0" layoutY="292.0" text="Item" />
+      <Label layoutX="525.0" layoutY="329.0" text="Quantity" />
+      <Label layoutX="525.0" layoutY="367.0" text="Price" />
+      <Label layoutX="527.0" layoutY="402.0" text="Location" />
+      <Label layoutX="525.0" layoutY="443.0" text="Expriation" />
    </children>
 </AnchorPane>

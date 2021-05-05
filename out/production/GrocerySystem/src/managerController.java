@@ -1,7 +1,12 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -17,6 +22,18 @@ public class managerController {
    @FXML
     public javafx.scene.control.TextArea list;
 
+    @FXML
+    public javafx.scene.control.TextField addItem;
+    @FXML
+    public javafx.scene.control.TextField addQ;
+    @FXML
+    public javafx.scene.control.TextField addP;
+    @FXML
+    public javafx.scene.control.TextField addLoc;
+    @FXML
+    public javafx.scene.control.TextField addExpr;
+
+
    /*Table Schema (SQL DB)
     - DB Name: Inventory
     - Table Name: Groceries
@@ -29,6 +46,68 @@ public class managerController {
     | item       | varchar(20) | NO   |     | NULL    |       |
     +------------+-------------+------+-----+---------+-------+
     */
+
+   public void addingColumn() throws Exception{
+       String item = addItem.getText();
+       String quantity = addQ.getText();
+       String price = addP.getText();
+       String location = addLoc.getText();
+       String expiration = addExpr.getText();
+
+       Connection con = MySQLConnection.getConnection();
+       String sql = "INSERT INTO Groceries VALUES (?, ?, ?, ?, ?)";
+       PreparedStatement stmt = con.prepareStatement(sql);
+      /* stmt.setString(1,  item);
+       stmt.setInt(2, Integer.parseInt(quantity));
+       stmt.setDouble(3, Integer.parseInt(price));
+       stmt.setString(4, location);
+       stmt.setString(5, expiration); */ 
+       stmt.executeUpdate();
+   }
+    // ATTEMPTING TO do addition with the SQL database
+    public void testAddition() throws Exception{
+        try{
+            // grabing the text from the user (which are entered in the text fields)
+            String itemName = returnItem.getText();
+            String itemQuantity = returnQ.getText();
+            // ERROR CHECKING
+            if( itemName == null || itemName.length() == 0 || itemQuantity == null || itemQuantity.length() == 0){
+                Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
+                notice.showAndWait();
+                return;
+            }
+            Connection con = MySQLConnection.getConnection();
+            String sql = " UPDATE Groceries SET Quantity = Quantity + ? WHERE Item = ?"; // we dont have the amount field yet i believe
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1,  Integer.parseInt(itemQuantity));
+            stmt.setString(2, itemName);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void testSubtraction() throws Exception{
+        try{
+            String itemName = takeItem.getText();
+            String itemQuantity = takeQ.getText();
+            // ERROR CHECKING
+            if( itemName == null || itemName.length() == 0 || itemQuantity == null || itemQuantity.length() == 0){
+                Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
+                notice.showAndWait();
+                return;
+            }
+            Connection con = MySQLConnection.getConnection();
+            String sql = " UPDATE Groceries SET Quantity = Quantity - ?  WHERE Item = ?"; // we dont have the amount field yet i believe
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1,  Integer.parseInt(itemQuantity));
+            stmt.setString(2, itemName);
+            stmt.executeUpdate();
+
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
 
     public void taking() throws IOException{
         String key = takeItem.getText();
