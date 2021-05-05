@@ -15,7 +15,7 @@ public class managerController {
     @FXML
     public javafx.scene.control.TextField returnQ;
    @FXML
-   public javafx.scene.control.TextArea list;
+    public javafx.scene.control.TextArea list;
 
    /*Table Schema (SQL DB)
     - DB Name: Inventory
