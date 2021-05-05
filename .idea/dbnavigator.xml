@@ -24,7 +24,12 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="68e21291-6591-4ec3-99c4-fd1d4f6cec5c">
+        <schema name="Inventory" object-types="index, constraint, function, table, procedure, view, column, dataset trigger" />
+        <schema name="mysql" object-types="function, table" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="68e21291-6591-4ec3-99c4-fd1d4f6cec5c">
@@ -32,7 +37,9 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="68e21291-6591-4ec3-99c4-fd1d4f6cec5c" object-ref="schemas/Inventory/tables/Groceries" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="68e21291-6591-4ec3-99c4-fd1d4f6cec5c" />

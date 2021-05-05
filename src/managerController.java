@@ -132,7 +132,7 @@ public class managerController implements Initializable{
             deleteItem();
         }
         else if (optionBox.getValue() == "Update Item"){
-            //updateItem();
+            updateItem();
 
         }
 
@@ -178,9 +178,77 @@ public class managerController implements Initializable{
     }
 
 
-   public void UpdateItem() throws Exception
+   public void updateItem() throws Exception
    {
+        //additem subtract item
+        // update expr date, update price, update location
+       String itemName = itemTXT.getText();
+       String itemQuantity = quantityTXT.getText();
+       String price = priceTXT.getText();
+       String location = locationTXT.getText();
+       String exprDt = expirationTXT.getText();
 
+       //int checking  = 0;
+
+       if( (itemQuantity == null || itemQuantity.length() == 0) && (price == null || price.length() == 0) && (location == null || location.length() == 0) && (exprDt == null || exprDt.length() == 0)){
+           Alert notice = new Alert(Alert.AlertType.ERROR, "Please Enter the Values you want updated");
+           notice.showAndWait();
+           return;
+       }
+       if(itemQuantity != null && itemQuantity.length() != 0){
+           try{
+
+           Connection con = MySQLConnection.getConnection();
+           String sql = "UPDATE Groceries SET Quantity = Quantity + ? WHERE Item = ?"; // we dont have the amount field yet i believe
+           PreparedStatement stmt = con.prepareStatement(sql);
+           stmt.setInt(1,  Integer.parseInt(itemQuantity));
+           stmt.setString(2, itemName);
+           stmt.executeUpdate();
+
+       } catch (Exception e) {
+
+                System.out.println(e);
+            }
+       }
+       if(price != null && price.length() != 0){
+            try{
+                Connection con = MySQLConnection.getConnection();
+                String sql = "UPDATE Groceries SET Price =  ? WHERE Item = ?"; // we dont have the amount field yet i believe
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setInt(1,  Integer.parseInt(price));
+                stmt.setString(2, itemName);
+                stmt.executeUpdate();
+
+            } catch (Exception e){
+                System.out.println(e);
+            }
+       }
+       if( location != null && location.length() != 0 ){
+           try{
+               Connection con = MySQLConnection.getConnection();
+               String sql = "UPDATE Groceries SET Location =  ? WHERE Item = ?"; // we dont have the amount field yet i believe
+               PreparedStatement stmt = con.prepareStatement(sql);
+               stmt.setInt(1,  Integer.parseInt(location));
+               stmt.setString(2, itemName);
+               stmt.executeUpdate();
+
+           } catch (Exception e){
+               System.out.println(e);
+           }
+       }
+       if( exprDt != null && exprDt.length() != 0){
+           try{
+               Connection con = MySQLConnection.getConnection();
+               String sql = "UPDATE Groceries SET Expiration =  ? WHERE Item = ?"; // we dont have the amount field yet i believe
+               PreparedStatement stmt = con.prepareStatement(sql);
+               stmt.setInt(1,  Integer.parseInt(exprDt));
+               stmt.setString(2, itemName);
+               stmt.executeUpdate();
+
+           } catch (Exception e){
+               System.out.println(e);
+           }
+       }
    }
 
     // ATTEMPTING TO do addition with the SQL database
