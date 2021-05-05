@@ -160,6 +160,7 @@ public class managerController implements Initializable{
        addItem.setString(4, location);
        addItem.setString(5, expiration);
        addItem.executeUpdate();
+       updateTable();
    }
 
 
@@ -175,6 +176,7 @@ public class managerController implements Initializable{
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, item);
         stmt.executeUpdate();
+        updateTable();
     }
 
 
@@ -249,8 +251,33 @@ public class managerController implements Initializable{
                System.out.println(e);
            }
        }
+      updateTable();
    }
 
+   public void updateTable(){
+       try
+       {
+           Connection con = MySQLConnection.getConnection();
+           oblist = FXCollections.observableArrayList();
+           ResultSet rs = con.createStatement().executeQuery("select * from Groceries");
+
+           while (rs.next()) {
+               oblist.add(new Table(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5)));
+           }
+
+       } catch (SQLException throwables) {
+           throwables.printStackTrace();
+       }
+
+       column_item.setCellValueFactory(new PropertyValueFactory<>("Item"));
+       column_quantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+       column_price.setCellValueFactory(new PropertyValueFactory<>("Price"));
+       column_location.setCellValueFactory(new PropertyValueFactory<>("Location"));
+       column_expiration.setCellValueFactory(new PropertyValueFactory<>("Expiration"));
+
+       fxTable.setItems(null);
+       fxTable.setItems(oblist);
+   }
     // ATTEMPTING TO do addition with the SQL database
    /* public void testAddition() {
         try{
