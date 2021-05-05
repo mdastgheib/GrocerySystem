@@ -1,39 +1,53 @@
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.*;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
-public class managerController {
+public class managerController implements Initializable{
     @FXML
-    public javafx.scene.control.TextField takeItem;
+    private ComboBox<String> optionBox;
     @FXML
-    public javafx.scene.control.TextField takeQ;
+    private Button confirmBtn;
     @FXML
-    public javafx.scene.control.TextField returnItem;
+    private TextField itemTXT;
     @FXML
-    public javafx.scene.control.TextField returnQ;
-   @FXML
-    public javafx.scene.control.TextArea list;
+    private TextField quantityTXT;
+    @FXML
+    private TextField locationTXT;
+    @FXML
+    private TextField priceTXT;
+    @FXML
+    private TextField expirationTXT;
 
     @FXML
-    public javafx.scene.control.TextField addItem;
+    private TableView <Table> fxTable;
     @FXML
-    public javafx.scene.control.TextField addQ;
+    private TableColumn <Table, String> column_item;
     @FXML
-    public javafx.scene.control.TextField addP;
+    private TableColumn <Table, String> column_quantity;
     @FXML
-    public javafx.scene.control.TextField addLoc;
+    private TableColumn <Table, String> column_price;
     @FXML
-    public javafx.scene.control.TextField addExpr;
+    private TableColumn <Table, String> column_location;
+    @FXML
+    private TableColumn <Table, String> column_expiration;
 
-
+    ObservableList <Table> oblist;
 
     /*Table Schema (SQL DB)
     - DB Name: Inventory
@@ -56,51 +70,125 @@ public class managerController {
 
     */
 
-    public void removeRow() throws Exception{
-        /* String item  = delete.getText();
-        if(item == null || item.length() == 0){
-           Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
-           notice.showAndWait();
-           return;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+
+        try
+        {
+            Connection con = MySQLConnection.getConnection();
+            oblist = FXCollections.observableArrayList();
+            ResultSet rs = con.createStatement().executeQuery("select * from Groceries");
+
+            while (rs.next()) {
+                oblist.add(new Table(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5)));
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        Connection con = MySQLConnection.getConnection();
-        String sql = "DELETE FROM Groceries WHERE item = ?";
-        PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setString(1,  item);
-        stmt.executeUpdate();
 
-         */
+        column_item.setCellValueFactory(new PropertyValueFactory<>("Item"));
+        column_quantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+        column_price.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        column_location.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        column_expiration.setCellValueFactory(new PropertyValueFactory<>("Expiration"));
+
+        fxTable.setItems(null);
+        fxTable.setItems(oblist);
+
+
+        //Disabling all text boxes until user selects an option from comboBox
+        disabler(true);
+        //Setting values into combobox
+        optionBox.getItems().addAll("Add Item", "Delete Item", "Update Item");
+        optionBox.setPromptText("Select an Operation:");
+
+        //Checking for change in combobox that will then be ran through confirmButton function
+        optionBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == "Add Item") {
+                disabler(false);
+            }
+
+            else if (newValue == "Delete Item") {
+                disabler(true);
+                itemTXT.setDisable(false);
+                confirmBtn.setDisable(false);
+            }
+
+            else if (newValue == "Update Item") {
+                disabler(false);
+                confirmBtn.setDisable(false);
+            }});
+    }// End initialize method
+
+    public void confirmButton(ActionEvent event) throws Exception
+    {
+        if (optionBox.getValue() == "Add Item") {
+            addingItem();
+        }
+        else if (optionBox.getValue() == "Delete Item") {
+            deleteItem();
+        }
+        else if (optionBox.getValue() == "Update Item"){
+            //updateItem();
+
+        }
+
     }
+   public void addingItem() throws Exception{
+       String item = itemTXT.getText();
+       String quantity = quantityTXT.getText();
+       String price = priceTXT.getText();
+       String location = locationTXT.getText();
+       String expiration = expirationTXT.getText();
 
-   public void addingColumn() throws Exception{
-       String item = addItem.getText();
-       String quantity = addQ.getText();
-       String price = addP.getText();
-       String location = addLoc.getText();
-       String expiration = addExpr.getText();
-
-       if( item == null || item.length() == 0 || quantity == null || quantity.length() == 0 || price == null || price.length() == 0 || location == null || location.length() == 0 || expiration == null || expiration.length() == 0){
-           Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
+       if( item == null || item.length() == 0 || quantity == null || quantity.length() == 0 || price == null || price.length() == 0 || location == null || location.length() == 0 || expiration == null || expiration.length() == 0)
+       {
+           Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields blank!");
            notice.showAndWait();
            return;
        }
 
        Connection con = MySQLConnection.getConnection();
        String sql = "INSERT INTO Groceries VALUES (?, ?, ?, ?, ?)";
-       PreparedStatement stmt = con.prepareStatement(sql);
-       stmt.setString(1,  item);
-       stmt.setInt(2, Integer.parseInt(quantity));
-       stmt.setDouble(3, Double.parseDouble(price));
-       stmt.setString(4, location);
-       stmt.setString(5, expiration);
-       stmt.executeUpdate();
+       PreparedStatement addItem = con.prepareStatement(sql);
+       addItem.setString(1,  item);
+       addItem.setInt(2, Integer.parseInt(quantity));
+       addItem.setDouble(3, Double.parseDouble(price));
+       addItem.setString(4, location);
+       addItem.setString(5, expiration);
+       addItem.executeUpdate();
    }
+
+
+    public void deleteItem() throws Exception {
+        String item = itemTXT.getText();
+        if (item == null || item.length() == 0) {
+            Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty.");
+            notice.showAndWait();
+            return;
+        }
+        Connection con = MySQLConnection.getConnection();
+        String sql = "DELETE FROM Groceries WHERE item = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, item);
+        stmt.executeUpdate();
+    }
+
+
+   public void UpdateItem() throws Exception
+   {
+
+   }
+
     // ATTEMPTING TO do addition with the SQL database
-    public void testAddition() throws Exception{
+    public void testAddition() {
         try{
             // grabing the text from the user (which are entered in the text fields)
-            String itemName = returnItem.getText();
-            String itemQuantity = returnQ.getText();
+            String itemName = itemTXT.getText();
+            String itemQuantity = quantityTXT.getText();
             // ERROR CHECKING
             if( itemName == null || itemName.length() == 0 || itemQuantity == null || itemQuantity.length() == 0){
                 Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
@@ -108,7 +196,7 @@ public class managerController {
                 return;
             }
             Connection con = MySQLConnection.getConnection();
-            String sql = " UPDATE Groceries SET Quantity = Quantity + ? WHERE Item = ?"; // we dont have the amount field yet i believe
+            String sql = "UPDATE Groceries SET Quantity = Quantity + ? WHERE Item = ?"; // we dont have the amount field yet i believe
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1,  Integer.parseInt(itemQuantity));
             stmt.setString(2, itemName);
@@ -119,8 +207,8 @@ public class managerController {
     }
     public void testSubtraction() throws Exception{
         try{
-            String itemName = takeItem.getText();
-            String itemQuantity = takeQ.getText();
+            String itemName = itemTXT.getText();
+            String itemQuantity = quantityTXT.getText();
             // ERROR CHECKING
             if( itemName == null || itemName.length() == 0 || itemQuantity == null || itemQuantity.length() == 0){
                 Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
@@ -128,7 +216,7 @@ public class managerController {
                 return;
             }
             Connection con = MySQLConnection.getConnection();
-            String sql = " UPDATE Groceries SET Quantity = Quantity - ?  WHERE Item = ?"; // we dont have the amount field yet i believe
+            String sql = "UPDATE Groceries SET Quantity = Quantity - ?  WHERE Item = ?"; // we dont have the amount field yet i believe
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1,  Integer.parseInt(itemQuantity));
             stmt.setString(2, itemName);
@@ -139,108 +227,6 @@ public class managerController {
         }
     }
 
-
-    public void taking() throws IOException{
-        String key = takeItem.getText();
-        String value = takeQ.getText();
-        Alert notice;
-
-        if(key == null || key.length() == 0 || value == null || value.length() == 0 )
-        {
-            notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
-            notice.showAndWait();
-        }
-
-        HashMap<Object, Object> map = new HashMap<>();
-        File file = new File("inventory.properties");
-        FileInputStream reader = new FileInputStream(file);
-        Properties properties = new Properties();
-        properties.load(reader);
-        reader.close();
-
-        // filling the HashMap with the property file, if empty nothing will be in it
-        // but the following if statement will fill it if anything is passed
-        for(String mainKeys: properties.stringPropertyNames())
-        {
-            map.put(mainKeys, properties.get(mainKeys));
-        }
-
-
-        if(map.containsKey(key))
-        {
-            // Here i am converting from an object to a String (due to HashMap)
-            String keyVal = (String) map.get(key);
-            // I am making the keyVal and the val into ints
-            int x = Integer.parseInt(keyVal);
-            int y = Integer.parseInt(String.valueOf(value));
-            int replaceVal = x - y;
-            // them making the subtracted outcome into a string and replacing the old value in the HashMap
-            String temp = Integer.toString(replaceVal);
-            map.replace(key,map.get(key), temp);
-            properties.putAll(map);
-            FileOutputStream write = new FileOutputStream(file, true);
-            properties.store(write, null);
-            notice = new Alert(Alert.AlertType.CONFIRMATION, "Item successfully found and taken");
-        }
-        else
-        {
-            notice = new Alert(Alert.AlertType.ERROR, "Item not found, please check what items are in stock.");
-        }
-        notice.showAndWait();
-    }
-    public void returning() throws IOException
-    {
-        // checking to see if the user did not enter an item
-        String key = returnItem.getText();
-        String value = returnQ.getText();
-        if(key == null || key.length() == 0 || value == null || value.length() == 0 ){
-            Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
-            notice.showAndWait();
-        }
-        // declaring my HashMap
-        HashMap<Object, Object> map = new HashMap<>();
-        File file = new File("inventory.properties");
-        FileInputStream reader = new FileInputStream(file);
-        Properties properties = new Properties();
-        properties.load(reader);
-        reader.close();
-
-        // filling the HashMap with the property file is empty nothing will be in it
-        // but the following if statement will fill it if anything is passed
-        for(String mainKeys: properties.stringPropertyNames()){
-            map.put(mainKeys, properties.get(mainKeys));
-        }
-
-        // checking if the map already contains the key
-        if(map.containsKey(key)){
-            // Here i am converting from an object to a String (due to HashMap)
-            String keyVal = (String) map.get(key);
-            // I am making the keyVal and the val into ints
-            int x = Integer.parseInt(keyVal);
-            int y = Integer.parseInt(String.valueOf(value));
-            int replaceVal = x + y;
-            String temp = Integer.toString(replaceVal);
-            // replacing old value in the HashMap
-            map.replace(key,map.get(key), temp);
-            properties.putAll(map);
-            FileOutputStream write = new FileOutputStream(file, true);
-            properties.store(write, null);
-            // notice = new Alert(Alert.AlertType.CONFIRMATION, "Item successfully added");
-        } else {
-            // so if this is not in the HashMap we just add it following the same procedure as above
-            int y = Integer.parseInt(String.valueOf(value));
-            int replaceVal = 0 + y;
-            String temp = Integer.toString(replaceVal);
-            map.put(key, temp);
-            properties.putAll(map);
-            FileOutputStream write = new FileOutputStream(file, true);
-            properties.store(write, null);
-            //notice = new Alert(Alert.AlertType.CONFIRMATION, "New item added to list!");
-
-        }
-        //notice.showAndWait();
-
-    }
 
     public void loadList() throws IOException {
         String finalMap ="";
@@ -267,6 +253,17 @@ public class managerController {
                 finalMap += newMap[i] + "\n";
             }
         }
-        list.setText(finalMap);
+        //list.setText(finalMap);
     }
+
+    //Method that will intake boolean value for setDisable options
+    public void disabler (Boolean option) {
+        itemTXT.setDisable(option);
+        priceTXT.setDisable(option);
+        quantityTXT.setDisable(option);
+        locationTXT.setDisable(option);
+        expirationTXT.setDisable(option);
+        confirmBtn.setDisable(option);
+
+    }//End disabler method
 }

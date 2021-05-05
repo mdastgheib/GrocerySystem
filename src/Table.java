@@ -51,9 +51,6 @@ public class Table
 
 
 
-
-
-
     String location, expiration, item, quantity, price;
     
 

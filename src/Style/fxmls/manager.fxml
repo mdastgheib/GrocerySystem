@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600" prefWidth="1000" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerController">
-   <children>
-      <Button fx:id="viewB" layoutX="97.0" layoutY="38.0" mnemonicParsing="false" onAction="#loadList" text="View All" />
-      <Button fx:id="takeB" layoutX="279.0" layoutY="38.0" mnemonicParsing="false" onAction="#testSubtraction" text="Take" />
-      <Button fx:id="returnB" layoutX="274.0" layoutY="132.0" mnemonicParsing="false" onAction="#testAddition" text="Return" />
-      <TextField fx:id="takeItem" layoutX="347.0" layoutY="26.0" />
-      <TextField fx:id="takeQ" layoutX="347.0" layoutY="64.0" />
-      <TextField fx:id="returnItem" layoutX="347.0" layoutY="119.0" />
-      <TextField fx:id="returnQ" layoutX="347.0" layoutY="157.0" />
-      <Label layoutX="516.0" layoutY="30.0" text="Item" />
-      <Label layoutX="516.0" layoutY="68.0" text="Quantity" />
-      <Label layoutX="516.0" layoutY="124.0" text="Item" />
-      <Label layoutX="516.0" layoutY="161.0" text="Quantity " />
-      <TextArea fx:id="list" layoutX="26.0" layoutY="79.0" prefHeight="296.0" prefWidth="200.0" />
-      <Button layoutX="260.0" layoutY="362.0" mnemonicParsing="false" onAction="#addingColumn" text="Add New" />
-      <TextField fx:id="addItem" layoutX="347.0" layoutY="288.0" />
-      <TextField fx:id="addQ" layoutX="347.0" layoutY="325.0" />
-      <TextField fx:id="addP" layoutX="347.0" layoutY="363.0" />
-      <TextField fx:id="addLoc" layoutX="347.0" layoutY="398.0" />
-      <TextField fx:id="addExpr" layoutX="347.0" layoutY="439.0" />
-      <Label layoutX="527.0" layoutY="292.0" text="Item" />
-      <Label layoutX="525.0" layoutY="329.0" text="Quantity" />
-      <Label layoutX="525.0" layoutY="367.0" text="Price" />
-      <Label layoutX="527.0" layoutY="402.0" text="Location" />
-      <Label layoutX="525.0" layoutY="443.0" text="Expriation" />
-   </children>
+<AnchorPane prefHeight="600" prefWidth="1000" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="managerController">
+    <children>
+
+        <TableView fx:id="fxTable" layoutX="31.0" layoutY="27.0" prefHeight="503.0" prefWidth="699.0">
+            <columns>
+                <TableColumn fx:id="column_item" prefWidth="140.0" text="Item" />
+                <TableColumn fx:id="column_quantity" prefWidth="140.0" text="Quantity" />
+                <TableColumn fx:id="column_price" prefWidth="140.0" text="Price" />
+                <TableColumn fx:id="column_location" prefWidth="140.0" text="Location" />
+                <TableColumn fx:id="column_expiration" maxWidth="150.0" prefWidth="140.0" text="Expiration" />
+            </columns>
+        </TableView>
+        <Button layoutX="833.0" layoutY="357.0" mnemonicParsing="false" text="Confirm" fx:id="confirmBtn" onAction="#confirmButton" />
+        <TextField fx:id="itemTXT" layoutX="825.0" layoutY="125.0" />
+        <TextField fx:id="expirationTXT" layoutX="825.0" layoutY="294.0" />
+        <TextField fx:id="quantityTXT" layoutX="825.0" layoutY="167.0" />
+        <TextField fx:id="locationTXT" layoutX="825.0" layoutY="250.0" />
+        <TextField fx:id="priceTXT" layoutX="825.0" layoutY="209.0" />
+
+        <Button layoutX="14.0" layoutY="550.0" mnemonicParsing="false" text="Return" />
+        <Label layoutX="740.0" layoutY="129.0" text="Item" />
+        <Label layoutX="740.0" layoutY="171.0" text="Quantity" />
+        <Label layoutX="740.0" layoutY="213.0" text="Price" />
+        <Label layoutX="740.0" layoutY="254.0" text="Location" />
+        <Label layoutX="740.0" layoutY="298.0" text="Expiration" />
+      <Label layoutX="826.0" layoutY="19.0" text="- Options -" />
+      <ComboBox fx:id="optionBox" layoutX="788.0" layoutY="59.0" prefWidth="150.0"  />
+
+    </children>
 </AnchorPane>
