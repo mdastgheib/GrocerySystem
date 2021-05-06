@@ -29,6 +29,8 @@ public class shopperController implements Initializable{
     @FXML
     private Button addtoCartBtn;
     @FXML
+    private Button placeOrderBtn;
+    @FXML
     private TextField itemTXT;
     @FXML
     private TextField quantityTXT;
@@ -73,6 +75,11 @@ public class shopperController implements Initializable{
     public void initialize(URL location, ResourceBundle resources)
     {
         updateTable();
+
+        BooleanBinding booleanBind = itemTXT.textProperty().isEmpty()
+                .or(quantityTXT.textProperty().isEmpty());
+
+        addtoCartBtn.disableProperty().bind(booleanBind);
 
     }// End initialize method
 

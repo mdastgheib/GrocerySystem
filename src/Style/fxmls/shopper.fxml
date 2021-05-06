@@ -28,7 +28,7 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Button layoutX="888.0" layoutY="505.0" mnemonicParsing="false" onAction="#placeOrder" text="Place Order" />
+      <Button fx:id="placeOrderBtn" layoutX="888.0" layoutY="505.0" mnemonicParsing="false" onAction="#placeOrder" text="Place Order" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="790.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/customer.png" />

@@ -29,6 +29,8 @@ public class shopperController implements Initializable{
     @FXML
     private Button addtoCartBtn;
     @FXML
+    private Button placeOrderBtn;
+    @FXML
     private TextField itemTXT;
     @FXML
     private TextField quantityTXT;
@@ -74,6 +76,11 @@ public class shopperController implements Initializable{
     {
         updateTable();
 
+        BooleanBinding booleanBind = itemTXT.textProperty().isEmpty()
+                .or(quantityTXT.textProperty().isEmpty());
+
+        addtoCartBtn.disableProperty().bind(booleanBind);
+
     }// End initialize method
 
     public void updateItem() throws Exception
@@ -82,11 +89,6 @@ public class shopperController implements Initializable{
         // update expr date, update price, update location
         String itemName = itemTXT.getText();
         String itemQuantity = quantityTXT.getText();
-
-        BooleanBinding booleanBind = itemTXT.textProperty().isEmpty()
-                .or(quantityTXT.textProperty().isEmpty());
-
-        addtoCartBtn.disableProperty().bind(booleanBind);
 
         if( (itemName == null || itemName.length() == 0 || itemQuantity == null || itemQuantity.length() == 0 || Integer.parseInt(itemQuantity) <=0) ){
             Alert notice = new Alert(Alert.AlertType.ERROR, "Please Enter an Item from the List and a Positive Value to Add to Cart");
