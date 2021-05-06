@@ -17,27 +17,27 @@
                 <TableColumn fx:id="column_expiration" maxWidth="150.0" prefWidth="140.0" text="Expiration" />
             </columns>
         </TableView>
-        <Button fx:id="addtoCartBtn" layoutX="821.0" layoutY="382.0" mnemonicParsing="false" onAction="#updateItem" text="Add to Cart" />
-        <TextField fx:id="itemTXT" layoutX="821.0" layoutY="303.0" />
-        <TextField fx:id="quantityTXT" layoutX="821.0" layoutY="342.0" />
+        <Button fx:id="addtoCartBtn" layoutX="886.0" layoutY="403.0" mnemonicParsing="false" onAction="#updateItem" text="Add to Cart" />
+        <TextField fx:id="itemTXT" layoutX="816.0" layoutY="324.0" />
+        <TextField fx:id="quantityTXT" layoutX="816.0" layoutY="363.0" />
 
         <Button layoutX="22.0" layoutY="551.0" mnemonicParsing="false" onAction="#returnMain" text="Logout">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-        <Label layoutX="742.0" layoutY="307.0" text="Item" />
-        <Label layoutX="743.0" layoutY="346.0" text="Quantity" />
-        <Label layoutX="803.0" layoutY="20.0" text="Welcome Back" textAlignment="CENTER">
+        <Label layoutX="743.0" layoutY="328.0" text="Item" />
+        <Label layoutX="743.0" layoutY="367.0" text="Quantity" />
+        <Label layoutX="802.0" layoutY="83.0" text="Welcome Back" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Button fx:id="placeOrderBtn" layoutX="888.0" layoutY="505.0" mnemonicParsing="false" onAction="#placeOrder" text="Place Order" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="790.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="placeOrderBtn" layoutX="886.0" layoutY="506.0" mnemonicParsing="false" onAction="#placeOrder" text="Place Order" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="786.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/customer.png" />
          </image>
       </ImageView>
-      <Label layoutX="821.0" layoutY="211.0" text="User: John Smith" underline="true" />
+      <Label layoutX="816.0" layoutY="268.0" text="User: John Smith" underline="true" />
       <Label layoutX="303.0" layoutY="23.0" text="Inventory">
          <font>
             <Font size="33.0" />
