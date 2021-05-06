@@ -12,7 +12,14 @@ This project was created with the intention of displaying proper version control
 - Tied into MySQL database with JDBC (Requires local MySQL Connector)
 
 ### Known Bugs:
-- 
+
+
+### User Guide:
+- a
+-
+-
+-
+-
 
 #### Members:
 - Moussa Dastgheib
