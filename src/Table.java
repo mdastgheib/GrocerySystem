@@ -8,6 +8,8 @@ public class Table
         this.expiration = expiration;
 
     }
+
+
     public String getItem() {
         return item;
     }
@@ -48,10 +50,14 @@ public class Table
         this.expiration = expiration;
     }
 
+    public void setHistory(String history){
+        this.history = history;
+    }
 
 
 
     String location, expiration, item, quantity, price;
+    String history;
     
 
 

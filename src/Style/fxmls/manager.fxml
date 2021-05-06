@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600" prefWidth="1000" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="managerController">
+<AnchorPane prefHeight="600" prefWidth="1000" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managerController">
     <children>
 
         <TableView fx:id="fxTable" layoutX="22.0" layoutY="83.0" prefHeight="448.0" prefWidth="700.0">
@@ -43,6 +43,7 @@
             <Font size="33.0" />
          </font>
       </Label>
+      <Button onAction= "#viewTransactions" layoutX="841.0" layoutY="550.0" mnemonicParsing="false" text="View Transactions" fx:id="viewHistory"  />
 
     </children>
 </AnchorPane>
