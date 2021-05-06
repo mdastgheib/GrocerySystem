@@ -1,5 +1,3 @@
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,8 +17,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class managerController implements Initializable{
@@ -259,6 +255,8 @@ public class managerController implements Initializable{
 
        fxTable.setItems(null);
        fxTable.setItems(oblist);
+
+
    }
 
    public void returnMain(ActionEvent event) throws IOException {
@@ -280,4 +278,6 @@ public class managerController implements Initializable{
         confirmBtn.setDisable(option);
 
     }//End disabler method
+
+
 }

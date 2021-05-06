@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="600" prefWidth="1000" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="managerController">
     <children>
 
-        <TableView fx:id="fxTable" layoutX="31.0" layoutY="27.0" prefHeight="503.0" prefWidth="699.0">
+        <TableView fx:id="fxTable" layoutX="22.0" layoutY="83.0" prefHeight="448.0" prefWidth="700.0">
             <columns>
                 <TableColumn fx:id="column_item" prefWidth="140.0" text="Item" />
                 <TableColumn fx:id="column_quantity" prefWidth="140.0" text="Quantity" />
@@ -16,21 +17,32 @@
                 <TableColumn fx:id="column_expiration" maxWidth="150.0" prefWidth="140.0" text="Expiration" />
             </columns>
         </TableView>
-        <Button layoutX="833.0" layoutY="357.0" mnemonicParsing="false" text="Confirm" fx:id="confirmBtn" onAction="#confirmButton" />
-        <TextField fx:id="itemTXT" layoutX="825.0" layoutY="125.0" />
-        <TextField fx:id="expirationTXT" layoutX="825.0" layoutY="294.0" />
-        <TextField fx:id="quantityTXT" layoutX="825.0" layoutY="167.0" />
-        <TextField fx:id="locationTXT" layoutX="825.0" layoutY="250.0" />
-        <TextField fx:id="priceTXT" layoutX="825.0" layoutY="209.0" />
+        <Button fx:id="confirmBtn" layoutX="867.0" layoutY="518.0" mnemonicParsing="false" onAction="#confirmButton" text="Confirm" />
+        <TextField fx:id="itemTXT" layoutX="821.0" layoutY="307.0" />
+        <TextField fx:id="expirationTXT" layoutX="821.0" layoutY="476.0" />
+        <TextField fx:id="quantityTXT" layoutX="821.0" layoutY="349.0" />
+        <TextField fx:id="locationTXT" layoutX="821.0" layoutY="432.0" />
+        <TextField fx:id="priceTXT" layoutX="821.0" layoutY="391.0" />
 
-        <Button layoutX="14.0" layoutY="550.0" mnemonicParsing="false" text="Return" fx:id="returnBtn" onAction="#returnMain" />
-        <Label layoutX="740.0" layoutY="129.0" text="Item" />
-        <Label layoutX="740.0" layoutY="171.0" text="Quantity" />
-        <Label layoutX="740.0" layoutY="213.0" text="Price" />
-        <Label layoutX="740.0" layoutY="254.0" text="Location" />
-        <Label layoutX="740.0" layoutY="298.0" text="Expiration" />
-      <Label layoutX="826.0" layoutY="19.0" text="- Options -" />
-      <ComboBox fx:id="optionBox" layoutX="788.0" layoutY="59.0" prefWidth="150.0"  />
+        <Button fx:id="returnBtn" layoutX="14.0" layoutY="550.0" mnemonicParsing="false" onAction="#returnMain" text="Logout" />
+        <Label layoutX="736.0" layoutY="311.0" text="Item" />
+        <Label layoutX="736.0" layoutY="353.0" text="Quantity" />
+        <Label layoutX="736.0" layoutY="395.0" text="Price" />
+        <Label layoutX="736.0" layoutY="436.0" text="Location" />
+        <Label layoutX="736.0" layoutY="480.0" text="Expiration" />
+      <Label layoutX="851.0" layoutY="232.0" text="Select Operation" />
+      <ComboBox fx:id="optionBox" layoutX="821.0" layoutY="255.0" prefWidth="150.0" />
+      <ImageView fitHeight="165.0" fitWidth="167.0" layoutX="790.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../images/manager.png" />
+        </image>
+      </ImageView>
+      <Label layoutX="828.0" layoutY="187.0" text="User: John Smith" textAlignment="CENTER" textFill="#171717" underline="true" />
+      <Label layoutX="202.0" layoutY="22.0" text="Inventory Management">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
 
     </children>
 </AnchorPane>

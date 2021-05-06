@@ -25,25 +25,24 @@
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
     <loaded-nodes>
-      <connection connection-id="68e21291-6591-4ec3-99c4-fd1d4f6cec5c">
-        <schema name="Inventory" object-types="index, constraint, function, table, procedure, view, column, dataset trigger" />
-        <schema name="mysql" object-types="function, table" />
+      <connection connection-id="2aa316ff-c9dd-4deb-9184-413e6c1d2b8a">
+        <schema name="Inventory" object-types="index, column, constraint, table, view, dataset trigger, function, procedure" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="68e21291-6591-4ec3-99c4-fd1d4f6cec5c">
-      <console name="Connection" type="STANDARD" schema="mysql" session="Main"><![CDATA[UPDATE Groceries SET Quantity = 1 WHERE Item = lzgid]]></console>
+    <connection id="2aa316ff-c9dd-4deb-9184-413e6c1d2b8a">
+      <console name="VPS" type="STANDARD" schema="mysql" session="Main"><![CDATA[show tables;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="68e21291-6591-4ec3-99c4-fd1d4f6cec5c" />
+    <connection id="2aa316ff-c9dd-4deb-9184-413e6c1d2b8a" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="68e21291-6591-4ec3-99c4-fd1d4f6cec5c" dataset="Inventory.Groceries" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="2aa316ff-c9dd-4deb-9184-413e6c1d2b8a" dataset="Inventory.Groceries" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -71,9 +70,9 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="68e21291-6591-4ec3-99c4-fd1d4f6cec5c" active="true">
+      <connection id="2aa316ff-c9dd-4deb-9184-413e6c1d2b8a" active="true">
         <database>
-          <name value="Connection" />
+          <name value="VPS" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
@@ -280,12 +279,19 @@
           <content-type name="DTD" enabled="true" />
           <content-type name="HTML" enabled="true" />
           <content-type name="XHTML" enabled="true" />
+          <content-type name="CSS" enabled="true" />
           <content-type name="Java" enabled="true" />
           <content-type name="SQL" enabled="true" />
           <content-type name="PL/SQL" enabled="true" />
+          <content-type name="JavaScript" enabled="true" />
           <content-type name="JSON" enabled="true" />
           <content-type name="JSON5" enabled="true" />
+          <content-type name="JSP" enabled="true" />
+          <content-type name="JSPx" enabled="true" />
           <content-type name="Groovy" enabled="true" />
+          <content-type name="FTL" enabled="true" />
+          <content-type name="GSP" enabled="true" />
+          <content-type name="VTL" enabled="true" />
           <content-type name="AIDL" enabled="true" />
           <content-type name="YAML" enabled="true" />
           <content-type name="Manifest" enabled="true" />
