@@ -28,8 +28,7 @@ public class mainController  {
         String passText = password.getText();
         this.user = userText;
 
-        if(userText == null || userText.length() == 0 || passText == null || passText.length() == 0)
-        {
+        if(userText == null || userText.length() == 0 || passText == null || passText.length() == 0) {
             Alert notice = new Alert(Alert.AlertType.ERROR, " Please Make Sure You entered a Username and Password. ");
             notice.showAndWait();
             return;
@@ -52,12 +51,10 @@ public class mainController  {
 
         // filling the HashMap with the property file is empty nothing will be in it
         // but the following if statement will fill it if anything is passed
-        for(String mainKeys: properties.stringPropertyNames())
-        {
+        for(String mainKeys: properties.stringPropertyNames()) {
             customer.put(mainKeys, properties.get(mainKeys));
         }
-        for(String mainKeys: properties2.stringPropertyNames())
-        {
+        for(String mainKeys: properties2.stringPropertyNames()) {
             manager.put(mainKeys, properties2.get(mainKeys));
         }
 
