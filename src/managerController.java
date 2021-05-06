@@ -129,16 +129,24 @@ public class managerController implements Initializable{
            return;
        }
 
+       String addH = item + " with a quantity of " + quantity + " was added to the inventory";
        Connection con = MySQLConnection.getConnection();
        String sql = "INSERT INTO Groceries VALUES (?, ?, ?, ?, ?)";
+       String add = "INSERT INTO Transactions VALUES (?)";
        PreparedStatement addItem = con.prepareStatement(sql);
+       PreparedStatement addHistory = con.prepareStatement(add);
        addItem.setString(1,  item);
        addItem.setInt(2, Integer.parseInt(quantity));
        addItem.setDouble(3, Double.parseDouble(price));
        addItem.setString(4, location);
        addItem.setString(5, expiration);
+       addHistory.setString(1, addH);
        addItem.executeUpdate();
+       addHistory.executeUpdate();
+       System.out.println(add);
        updateTable();
+
+
    }
 
 
@@ -149,26 +157,25 @@ public class managerController implements Initializable{
             notice.showAndWait();
             return;
         }
+        String deleteH = item + " was deleted from the inventory";
         Connection con = MySQLConnection.getConnection();
         String sql = "DELETE FROM Groceries WHERE item = ?";
         PreparedStatement stmt = con.prepareStatement(sql);
+        PreparedStatement delH = con.prepareStatement("INSERT INTO Transactions VALUES (?)");
+        delH.setString(1, deleteH);
         stmt.setString(1, item);
         stmt.executeUpdate();
+        delH.executeUpdate();
         updateTable();
     }
 
-
    public void updateItem() throws Exception
    {
-        //additem subtract item
-        // update expr date, update price, update location
        String itemName = itemTXT.getText();
        String itemQuantity = quantityTXT.getText();
        String price = priceTXT.getText();
        String location = locationTXT.getText();
        String exprDt = expirationTXT.getText();
-
-       //int checking  = 0;
 
        if( (itemQuantity == null || itemQuantity.length() == 0) && (price == null || price.length() == 0) && (location == null || location.length() == 0) && (exprDt == null || exprDt.length() == 0)){
            Alert notice = new Alert(Alert.AlertType.ERROR, "Please Enter the Values you want updated");
@@ -179,11 +186,15 @@ public class managerController implements Initializable{
            try{
 
            Connection con = MySQLConnection.getConnection();
+           String qnt = itemName + "  was updated with a quantity of  " + itemQuantity;
            String sql = "UPDATE Groceries SET Quantity = Quantity + ? WHERE Item = ?"; // we dont have the amount field yet i believe
            PreparedStatement stmt = con.prepareStatement(sql);
+           PreparedStatement qntH = con.prepareStatement("INSERT INTO Transactions VALUES (?)");
+           qntH.setString(1, qnt);
            stmt.setInt(1,  Integer.parseInt(itemQuantity));
            stmt.setString(2, itemName);
            stmt.executeUpdate();
+           qntH.executeUpdate();
 
        } catch (Exception e) {
 

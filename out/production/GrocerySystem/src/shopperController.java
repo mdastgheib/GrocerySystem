@@ -1,4 +1,3 @@
-import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -87,10 +86,7 @@ public class shopperController implements Initializable{
         BooleanBinding booleanBind = itemTXT.textProperty().isEmpty()
                 .or(quantityTXT.textProperty().isEmpty());
 
-        addtoCartBtn.disableProperty().bind(
-                Bindings.isEmpty(itemTXT.textProperty())
-                        .or(Bindings.isEmpty(quantityTXT.textProperty()))
-        );
+        addtoCartBtn.disableProperty().bind(booleanBind);
 
         if( (itemName == null || itemName.length() == 0 || itemQuantity == null || itemQuantity.length() == 0 || Integer.parseInt(itemQuantity) <=0) ){
             Alert notice = new Alert(Alert.AlertType.ERROR, "Please Enter an Item from the List and a Positive Value to Add to Cart");
