@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600" prefWidth="1000" xmlns="http://javafx.com/javafx" stylesheets="/Style/fxmls/main.css" xmlns:fx="http://javafx.com/fxml" fx:controller="shopperController">
+<AnchorPane prefHeight="600" prefWidth="1000" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shopperController">
     <children>
 
         <TableView fx:id="fxTable" layoutX="31.0" layoutY="27.0" prefHeight="503.0" prefWidth="699.0">
@@ -16,21 +17,24 @@
                 <TableColumn fx:id="column_expiration" maxWidth="150.0" prefWidth="140.0" text="Expiration" />
             </columns>
         </TableView>
-        <Button layoutX="833.0" layoutY="357.0" mnemonicParsing="false" text="Confirm" fx:id="confirmBtn" onAction="#confirmButton" />
-        <TextField fx:id="itemTXT" layoutX="825.0" layoutY="125.0" />
-        <TextField fx:id="expirationTXT" layoutX="825.0" layoutY="294.0" />
-        <TextField fx:id="quantityTXT" layoutX="825.0" layoutY="167.0" />
-        <TextField fx:id="locationTXT" layoutX="825.0" layoutY="250.0" />
-        <TextField fx:id="priceTXT" layoutX="825.0" layoutY="209.0" />
+        <Button fx:id="addtoCartBtn" layoutX="821.0" layoutY="382.0" mnemonicParsing="false" onAction="#updateItem" text="Add to Cart" />
+        <TextField fx:id="itemTXT" layoutX="821.0" layoutY="303.0" />
+        <TextField fx:id="quantityTXT" layoutX="821.0" layoutY="342.0" />
 
-        <Button layoutX="14.0" layoutY="550.0" mnemonicParsing="false" text="Return" />
-        <Label layoutX="740.0" layoutY="129.0" text="Item" />
-        <Label layoutX="740.0" layoutY="171.0" text="Quantity" />
-        <Label layoutX="740.0" layoutY="213.0" text="Price" />
-        <Label layoutX="740.0" layoutY="254.0" text="Location" />
-        <Label layoutX="740.0" layoutY="298.0" text="Expiration" />
-        <Label layoutX="826.0" layoutY="19.0" text="- Options -" />
-        <ComboBox fx:id="optionBox" layoutX="788.0" layoutY="59.0" prefWidth="150.0" />
+        <Button layoutX="14.0" layoutY="550.0" mnemonicParsing="false" onAction="#returnMain" text="Logout" />
+        <Label layoutX="742.0" layoutY="307.0" text="Item" />
+        <Label layoutX="743.0" layoutY="346.0" text="Quantity" />
+        <Label layoutX="803.0" layoutY="20.0" text="Welcome Back" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Button layoutX="888.0" layoutY="505.0" mnemonicParsing="false" onAction="#placeOrder" text="Place Order" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="790.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/customer.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="821.0" layoutY="211.0" text="User: John Smith" underline="true" />
 
     </children>
 </AnchorPane>
