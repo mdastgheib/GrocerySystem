@@ -23,7 +23,7 @@
         <TextField fx:id="locationTXT" layoutX="825.0" layoutY="250.0" />
         <TextField fx:id="priceTXT" layoutX="825.0" layoutY="209.0" />
 
-        <Button layoutX="14.0" layoutY="550.0" mnemonicParsing="false" text="Return" />
+        <Button layoutX="14.0" layoutY="550.0" mnemonicParsing="false" text="Return" fx:id="returnBtn" onAction="#returnMain" />
         <Label layoutX="740.0" layoutY="129.0" text="Item" />
         <Label layoutX="740.0" layoutY="171.0" text="Quantity" />
         <Label layoutX="740.0" layoutY="213.0" text="Price" />

@@ -4,9 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
@@ -84,33 +89,33 @@ public class managerController implements Initializable{
 
         //Checking for change in combobox that will then be ran through confirmButton function
         optionBox.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == "Add Item") {
-                disabler(false);
+            switch (newValue) {
+                case "Add Item":
+                    disabler(false);
+                    break;
+                case "Delete Item":
+                    disabler(true);
+                    itemTXT.setDisable(false);
+                    confirmBtn.setDisable(false);
+                    break;
+                case "Update Item":
+                    disabler(false);
+                    confirmBtn.setDisable(false);
+                    break;
             }
-
-            else if (newValue == "Delete Item") {
-                disabler(true);
-                itemTXT.setDisable(false);
-                confirmBtn.setDisable(false);
-            }
-
-            else if (newValue == "Update Item") {
-                disabler(false);
-                confirmBtn.setDisable(false);
-            }});
+        });
     }// End initialize method
 
     public void confirmButton(ActionEvent event) throws Exception
     {
-        if (optionBox.getValue() == "Add Item") {
+        if (optionBox.getValue().equals("Add Item")) {
             addingItem();
         }
-        else if (optionBox.getValue() == "Delete Item") {
+        else if (optionBox.getValue().equals("Delete Item")) {
             deleteItem();
         }
-        else if (optionBox.getValue() == "Update Item"){
+        else if (optionBox.getValue().equals("Update Item")){
             updateItem();
-
         }
 
     }
@@ -256,6 +261,14 @@ public class managerController implements Initializable{
        fxTable.setItems(oblist);
    }
 
+   public void returnMain(ActionEvent event) throws IOException {
+        Parent mainPage = FXMLLoader.load(getClass().getResource("/Style/fxmls/main.fxml"));
+        Scene main = new Scene(mainPage);
+        //Obtaining stage information and setting our new scene/fxml
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.setScene(main);
+        currentStage.show();
+    }
 
     //Method that will intake boolean value for setDisable options
     public void disabler (Boolean option) {
