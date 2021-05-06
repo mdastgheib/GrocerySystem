@@ -267,7 +267,6 @@ public class managerController implements Initializable{
        fxTable.setItems(null);
        fxTable.setItems(oblist);
 
-
    }
 
    public void returnMain(ActionEvent event) throws IOException {
@@ -276,6 +275,15 @@ public class managerController implements Initializable{
         //Obtaining stage information and setting our new scene/fxml
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.setScene(main);
+        currentStage.show();
+    }
+    public void viewTransactions(ActionEvent event) throws IOException {
+
+        Parent transactions = FXMLLoader.load(getClass().getResource("/Style/fxmls/transactions.fxml"));
+        Scene T = new Scene(transactions);
+        //Obtaining stage information and setting our new scene/fxml
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.setScene(T);
         currentStage.show();
     }
 

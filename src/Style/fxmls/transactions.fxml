@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600" prefWidth="1000" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="transactionsController">
+    <children>
+
+        <TableView fx:id="fxTable" layoutX="22.0" layoutY="83.0" prefHeight="448.0" prefWidth="700.0">
+            <columns>
+                <TableColumn fx:id="column_history" prefWidth="140.0" text="History" />
+
+            </columns>
+        </TableView>
+
+        <Button fx:id="returnBtn" layoutX="14.0" layoutY="550.0" mnemonicParsing="false" onAction="#returnMain" text="Logout" />
+        <ImageView fitHeight="165.0" fitWidth="167.0" layoutX="790.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/manager.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="828.0" layoutY="187.0" text="User: John Smith" textAlignment="CENTER" textFill="#171717" underline="true" />
+        <Label layoutX="202.0" layoutY="22.0" text="Transaction History">
+            <font>
+                <Font size="33.0" />
+            </font>
+        </Label>
+
+    </children>
+</AnchorPane>
