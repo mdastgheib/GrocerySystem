@@ -81,6 +81,11 @@ public class shopperController implements Initializable{
 
         addtoCartBtn.disableProperty().bind(booleanBind);
 
+        BooleanBinding booleanBind2 = itemTXT.textProperty().isEmpty()
+                .or(quantityTXT.textProperty().isEmpty());
+
+        placeOrderBtn.disableProperty().bind(booleanBind2);
+
     }// End initialize method
 
     public void updateItem() throws Exception
@@ -99,11 +104,15 @@ public class shopperController implements Initializable{
             try{
 
                 Connection con = MySQLConnection.getConnection();
+                String qnt = itemName + "  was updated with a quantity of  -" + itemQuantity;
                 String sql = "UPDATE Groceries SET Quantity = Quantity - ? WHERE Item = ?"; // we dont have the amount field yet i believe
                 PreparedStatement stmt = con.prepareStatement(sql);
+                PreparedStatement qntH = con.prepareStatement("INSERT INTO Transactions VALUES (?)");
+                qntH.setString(1, qnt);
                 stmt.setInt(1,  Integer.parseInt(itemQuantity));
                 stmt.setString(2, itemName);
                 stmt.executeUpdate();
+                qntH.executeUpdate();
 
             } catch (Exception e) {
 

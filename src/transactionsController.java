@@ -19,7 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class transactionsController extends managerController {
+public class transactionsController extends managerController{
 
     @FXML
     private TableColumn<Table, String> column_history;

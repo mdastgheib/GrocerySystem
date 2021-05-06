@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600" prefWidth="1000" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="transactionsController">
+<AnchorPane prefHeight="600" prefWidth="1000" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="transactionsController">
     <children>
 
-        <Button fx:id="returnBtn" layoutX="14.0" layoutY="550.0" mnemonicParsing="false" onAction="#returnMain" text="Return" />
-        <ImageView fitHeight="165.0" fitWidth="167.0" layoutX="790.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+        <Button fx:id="returnBtn" layoutX="22.0" layoutY="551.0" mnemonicParsing="false" onAction="#returnMain" text="Return">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <ImageView fitHeight="165.0" fitWidth="167.0" layoutX="783.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/manager.png" />
             </image>
         </ImageView>
-        <Label layoutX="828.0" layoutY="187.0" text="User: John Smith" textAlignment="CENTER" textFill="#171717" underline="true" />
-        <Label layoutX="258.0" layoutY="14.0" text="Transaction History">
+        <Label layoutX="821.0" layoutY="393.0" text="User: John Smith" textAlignment="CENTER" underline="true" />
+        <Label layoutX="232.0" layoutY="22.0" text="Transaction History">
             <font>
                 <Font size="33.0" />
             </font>
         </Label>
-      <ListView layoutX="15.0" layoutY="65.0" prefHeight="475.0" prefWidth="766.0" fx:id="list" />
+      <ListView fx:id="list" layoutX="22.0" layoutY="83.0" prefHeight="448.0" prefWidth="700.0" />
 
     </children>
 </AnchorPane>
