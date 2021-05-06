@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="400.0" stylesheets="/Style/fxmls/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainController">
    <children>
-      <Button layoutX="477.0" layoutY="229.0" mnemonicParsing="false" onAction="#logIn" text="Login" />
-      <TextField fx:id="password" layoutX="426.0" layoutY="172.0" />
-      <TextField fx:id="username" layoutX="426.0" layoutY="118.0" />
-      <Label layoutX="334.0" layoutY="122.0" text="Username" />
-      <Label layoutX="336.0" layoutY="189.0" text="Password" />
-      <Label layoutX="459.0" layoutY="45.0" text="Grocery System" />
-      <Button layoutX="167.0" layoutY="360.0" mnemonicParsing="false" text="Button" onAction="#testSQL" />
+      <Button layoutX="176.0" layoutY="371.0" mnemonicParsing="false" onAction="#logIn" text="Login" />
+      <TextField fx:id="password" layoutX="131.0" layoutY="337.0" prefHeight="25.0" prefWidth="150.0" />
+      <TextField fx:id="username" layoutX="131.0" layoutY="281.0" prefHeight="25.0" prefWidth="150.0" />
+      <Label layoutX="178.0" layoutY="258.0" text="Username" />
+      <Label layoutX="175.0" layoutY="318.0" text="Password" />
+      <Button layoutX="174.0" layoutY="511.0" mnemonicParsing="false" onAction="#testSQL" text="Tester" />
+      <Button fx:id="helpBtn" layoutX="178.0" layoutY="412.0" mnemonicParsing="false" text="Help" />
+      <ImageView fitHeight="136.0" fitWidth="150.0" layoutX="125.0" layoutY="98.0" pickOnBounds="true">
+      <image>
+         <Image url="@../images/basket.png" />
+      </image>
+      </ImageView>
+      <Label layoutX="92.0" layoutY="42.0" text="Grocery Storage Login">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+
    </children>
 </AnchorPane>

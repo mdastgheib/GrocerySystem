@@ -1,3 +1,5 @@
+import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -5,13 +7,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Properties;
 
-public class mainController {
+public class mainController  {
 
     @FXML
     public javafx.scene.control.TextField username;
@@ -110,6 +113,7 @@ public class mainController {
         currentStage.setScene(infoScene);
         currentStage.show();
     }
+
 }
 
 
