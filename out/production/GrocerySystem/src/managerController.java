@@ -74,30 +74,7 @@ public class managerController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
-        try
-        {
-            Connection con = MySQLConnection.getConnection();
-            oblist = FXCollections.observableArrayList();
-            ResultSet rs = con.createStatement().executeQuery("select * from Groceries");
-
-            while (rs.next()) {
-                oblist.add(new Table(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5)));
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        column_item.setCellValueFactory(new PropertyValueFactory<>("Item"));
-        column_quantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
-        column_price.setCellValueFactory(new PropertyValueFactory<>("Price"));
-        column_location.setCellValueFactory(new PropertyValueFactory<>("Location"));
-        column_expiration.setCellValueFactory(new PropertyValueFactory<>("Expiration"));
-
-        fxTable.setItems(null);
-        fxTable.setItems(oblist);
-
+        updateTable();
 
         //Disabling all text boxes until user selects an option from comboBox
         disabler(true);
@@ -278,78 +255,7 @@ public class managerController implements Initializable{
        fxTable.setItems(null);
        fxTable.setItems(oblist);
    }
-    // ATTEMPTING TO do addition with the SQL database
-   /* public void testAddition() {
-        try{
-            // grabing the text from the user (which are entered in the text fields)
-            String itemName = itemTXT.getText();
-            String itemQuantity = quantityTXT.getText();
-            // ERROR CHECKING
-            if( itemName == null || itemName.length() == 0 || itemQuantity == null || itemQuantity.length() == 0){
-                Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
-                notice.showAndWait();
-                return;
-            }
-            Connection con = MySQLConnection.getConnection();
-            String sql = "UPDATE Groceries SET Quantity = Quantity + ? WHERE Item = ?"; // we dont have the amount field yet i believe
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1,  Integer.parseInt(itemQuantity));
-            stmt.setString(2, itemName);
-            stmt.executeUpdate();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-    public void testSubtraction() throws Exception{
-        try{
-            String itemName = itemTXT.getText();
-            String itemQuantity = quantityTXT.getText();
-            // ERROR CHECKING
-            if( itemName == null || itemName.length() == 0 || itemQuantity == null || itemQuantity.length() == 0){
-                Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields empty. ");
-                notice.showAndWait();
-                return;
-            }
-            Connection con = MySQLConnection.getConnection();
-            String sql = "UPDATE Groceries SET Quantity = Quantity - ?  WHERE Item = ?"; // we dont have the amount field yet i believe
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1,  Integer.parseInt(itemQuantity));
-            stmt.setString(2, itemName);
-            stmt.executeUpdate();
 
-        } catch (Exception e){
-            System.out.println(e);
-        }
-    }
-    */
-
-    /*public void loadList() throws IOException {
-        String finalMap ="";
-        HashMap<Object, Object> map = new HashMap<>();
-        File file = new File("inventory.properties");
-        FileInputStream reader = new FileInputStream(file);
-        Properties properties = new Properties();
-        properties.load(reader);
-        reader.close();
-        // filling the HashMap
-        for(String mainKeys: properties.stringPropertyNames()){
-            map.put(mainKeys, properties.get(mainKeys));
-        }
-
-        // putting the HashMap into a formatted String
-        String theMap = map.toString();
-        String[] newMap = theMap.split(",");
-        for( int i = 0; i < newMap.length; i++){
-            if(i == 0 ) {
-                finalMap += newMap[i].substring(1) + "\n";
-            } else if (i == map.size() - 1){
-                finalMap += newMap[i].substring(0, newMap[i].length() - 1) + "\n";
-            } else {
-                finalMap += newMap[i] + "\n";
-            }
-        }
-        //list.setText(finalMap);
-    }*/
 
     //Method that will intake boolean value for setDisable options
     public void disabler (Boolean option) {
