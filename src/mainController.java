@@ -103,17 +103,6 @@ public class mainController  {
 
     }
 
-    public void testSQL(ActionEvent event) throws IOException {
-        //Loading in fxml and setting it to scene
-        Parent Sorts = FXMLLoader.load(getClass().getResource("/Style/fxmls/testDB.fxml"));
-        Scene infoScene = new Scene(Sorts);
-
-        //Obtaining stage information and setting our new scene/fxml
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        currentStage.setScene(infoScene);
-        currentStage.show();
-    }
-
 }
 
 
