@@ -11,7 +11,7 @@ This project was created with the intention of displaying proper version control
 
 - Created with Intellij, dependent on Java 1.8 with built in JavaFX
 - Tied into MySQL database with JDBC (Requires local MySQL Connector)
-- MySQL Database is must be hosted, following the outlined Table schema in managerController
+- MySQL Database must be hosted, following the outlined Table schema in managerController
 
 
 ### Login Credentials:
