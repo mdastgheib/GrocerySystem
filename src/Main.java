@@ -8,7 +8,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
+        //Initializing our program, loading in our first page
         AnchorPane root = FXMLLoader.load(getClass().getResource("/Style/fxmls/main.fxml"));
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 400, 550));

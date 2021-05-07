@@ -23,11 +23,14 @@ public class mainController  {
 
     public String user = "";
 
+    //Login method
+    //This method ties to the 'login' button using onAction triggers
     public void logIn(ActionEvent event) throws IOException {
         String userText = username.getText();
         String passText = password.getText();
         this.user = userText;
 
+        //Ensuring that minimum length requirements are met and the user does not leave the input fields empty
         if(userText == null || userText.length() == 0 || passText == null || passText.length() == 0) {
             Alert notice = new Alert(Alert.AlertType.ERROR, " Please Make Sure You entered a Username and Password. ");
             notice.showAndWait();
@@ -60,8 +63,8 @@ public class mainController  {
 
         String usr = (String) manager.get(userText);
         String customers = (String) customer.get(userText);
-        // THIS MEANS A VALID USERNAME AND PASSWORD COMBINATION WAS ENTERED GOING TO MAKE TWO SCENES BASED OFF WHETHER OR NOT THIS PERSON IS AN ADMINISTATOR
 
+        // THIS MEANS A VALID USERNAME AND PASSWORD COMBINATION WAS ENTERED GOING TO MAKE TWO SCENES BASED OFF WHETHER OR NOT THIS PERSON IS AN ADMINISTATOR
         if ((manager.containsKey(userText) &&  usr.equals(passText)) || (customer.containsKey(userText) &&  customers.equals(passText)))
         {
 
@@ -76,24 +79,19 @@ public class mainController  {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             //Checking input to determine what type of user, then opening that fxml scene
-            if(manager.containsKey(userText))
-            {
+            if(manager.containsKey(userText)) {
                 currentStage.setScene(managerS);
                 currentStage.show();
             }
-            else
-            {
+            else {
                 currentStage.setScene(shopperS);
                 currentStage.show();
             }
-
-            //Alert notice = new Alert(Alert.AlertType.CONFIRMATION, "Login Successful.");
-            //notice.showAndWait();
-
         } //End if-statement
 
         else
         {
+            //If the login information does not match the pre-defined values inside our hashmaps, an alert will be sent out to the user
             Alert notice = new Alert(Alert.AlertType.ERROR, "The Username or password is incorrect!");
             notice.showAndWait();
         }
