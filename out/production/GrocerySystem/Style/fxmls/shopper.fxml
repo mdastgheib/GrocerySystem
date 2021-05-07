@@ -17,7 +17,7 @@
                 <TableColumn fx:id="column_expiration" maxWidth="150.0" prefWidth="140.0" text="Expiration" />
             </columns>
         </TableView>
-        <Button fx:id="addtoCartBtn" layoutX="886.0" layoutY="403.0" mnemonicParsing="false" onAction="#updateItem" text="Add to Cart" />
+        <Button fx:id="addtoCartBtn" layoutX="886.0" layoutY="403.0" mnemonicParsing="false" onAction="#removeItem" text="Add to Cart" />
         <TextField fx:id="itemTXT" layoutX="816.0" layoutY="324.0" />
         <TextField fx:id="quantityTXT" layoutX="816.0" layoutY="363.0" />
 
