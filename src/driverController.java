@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class driverController {
+
+    //function returns user back to customer page
     public void returnShopper(ActionEvent event) throws IOException {
         Parent mainPage = FXMLLoader.load(getClass().getResource("/Style/fxmls/shopper.fxml"));
         Scene main = new Scene(mainPage);
