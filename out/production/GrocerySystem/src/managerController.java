@@ -20,6 +20,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class managerController implements Initializable{
+    // DECLARING FXML variables
+    // these variables are used whenever referencing objects in the fxml files
     @FXML
     private ComboBox<String> optionBox;
     @FXML
@@ -48,6 +50,7 @@ public class managerController implements Initializable{
     @FXML
     private TableColumn <Table, String> column_expiration;
 
+    // declaring our table
     ObservableList <Table> oblist;
 
     /*Table Schema (SQL DB)
@@ -104,6 +107,7 @@ public class managerController implements Initializable{
 
     public void confirmButton(ActionEvent event) throws Exception
     {
+        // checking the option box value and calling functions accordingly
         if (optionBox.getValue().equals("Add Item")) {
             addingItem();
         }
@@ -114,14 +118,19 @@ public class managerController implements Initializable{
             updateItem();
         }
 
-    }
+    }// End confirmButton method
+
    public void addingItem() throws Exception{
+
+        // getting the values passed in through the text fields
        String item = itemTXT.getText();
        String quantity = quantityTXT.getText();
        String price = priceTXT.getText();
        String location = locationTXT.getText();
        String expiration = expirationTXT.getText();
 
+       // checking to see if any of the fields are NULL as all fields must
+       // contain a value inorder for the add method to function properly
        if( item == null || item.length() == 0 || quantity == null || quantity.length() == 0 || price == null || price.length() == 0 || location == null || location.length() == 0 || expiration == null || expiration.length() == 0)
        {
            Alert notice = new Alert(Alert.AlertType.ERROR, "Please do not leave any fields blank!");
@@ -147,7 +156,7 @@ public class managerController implements Initializable{
        updateTable();
 
 
-   }
+   } // end addingItem() method
 
 
     public void deleteItem() throws Exception {

@@ -88,7 +88,7 @@ public class shopperController implements Initializable{
 
     }// End initialize method
 
-    public void updateItem() throws Exception
+    public void removeItem() throws Exception
     {
         //additem subtract item
         // update expr date, update price, update location
