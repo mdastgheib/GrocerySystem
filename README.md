@@ -4,7 +4,7 @@
 *The gif above showcases the Manager portal for inventory management*
 
 ## Description:
-This project was created with the intention of displaying proper version control, co-authoring and knowledge of ORM.
+This project was created with the intention of displaying proper version control, co-authoring and knowledge of ORM. The project involves a SQL database which stores information regarding the inventory for a grocery store. Based off of the user either being a manager or customer different operations are avaliable to modify this database and view the contents of the databas. 
 
 
 ### Version/Requirements:
