@@ -20,13 +20,13 @@ This project was created with the intention of displaying proper version control
 
 **- Customer Login:** 
 
-**username:** Customer
-**password:** 12345
+- username: Customer
+- password: 12345
 
 **- Manager Login:**
 
-**username:** Manager
-**password:** 12345
+- username: Manager
+- password: 12345
 
 ### User Guide:
 
