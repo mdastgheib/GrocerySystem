@@ -25,17 +25,18 @@ public class transactionsController extends managerController{
     private TableColumn<Table, String> column_history;
     @FXML
     ListView<String> list;
-
     ObservableList<String> items = FXCollections.observableArrayList();
 
+    //The following method will initialize a ListView that will perform an SQL Query to load in information from the same database, just in a different table
+    //Using list for this table rather tableView due to conflicting issue complications
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         list.setItems(items);
         try
         {
+            //Connecting to the SQL server, then executing our Query
             Connection con = MySQLConnection.getConnection();
-
             ResultSet rs = con.createStatement().executeQuery("select * from Transactions");
 
             while (rs.next()) {
