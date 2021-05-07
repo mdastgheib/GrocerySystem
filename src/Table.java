@@ -1,5 +1,6 @@
 public class Table
 {
+    //Constructor 'class' created to allow TableView operations (loading MySQL Table into JavaFX)
     public Table(String item, String quantity, String price, String location, String expiration) {
         this.item = item;
         this.quantity = quantity;
