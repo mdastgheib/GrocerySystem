@@ -19,10 +19,12 @@ This project was created with the intention of displaying proper version control
 ### Login Credentials:
 
 **- Customer Login:** 
+
 username: Customer
 password: 12345
 
 **- Manager Login:**
+
 username: Manager
 password: 12345
 
